@@ -9,7 +9,7 @@
 #import "RMAreaView.h"
 #import "RMArrowView.h"
 
-#define IntervalBottom 100 //坐标系距离当前view底部距离
+#define IntervalBottom 40 //坐标系距离当前view底部距离
 #define IntervalLeft 50 //坐标系距离左边距
 #define IntervalRight 20 //坐标系距离右边距
 #define ChartWidth (kScreenWidth - IntervalLeft - 10 - IntervalRight)//坐标系（绘制图形）宽度
@@ -18,16 +18,17 @@
 
 @interface RMAreaView()
 
-@property (nonatomic, strong) NSMutableArray *pointArray;
-@property (nonatomic, assign) CGFloat distance;
-@property (nonatomic, assign) NSInteger yMax;
-@property (nonatomic, strong) NSArray *xArr;
+@property (nonatomic, strong) NSMutableArray *pointArray;//根据传入的yVAlueArr计算出的坐标点
+@property (nonatomic, assign) CGFloat distance;//x轴刻度值间距
+@property (nonatomic, assign) NSInteger yMax;//确定y轴最大显示刻度值（可根据需要进行改变）
 @property (nonatomic, strong) NSMutableArray *circleArr;//点击显示的标记圈
-@property (nonatomic, strong) NSMutableArray *clickBgViewArr;
-@property (nonatomic, strong) NSMutableArray *tipsArr;
+@property (nonatomic, strong) NSMutableArray *clickBgViewArr;//点击区域显示的白色背景条
+@property (nonatomic, strong) NSMutableArray *tipsArr;//点击曲线显示的提示框
 @property (nonatomic, strong) NSMutableArray *arrowArr;
 @property (nonatomic, strong) UILabel *titleLabel;//标题
-@property (nonatomic, strong) UILabel *yTitleLabel;//标题
+@property (nonatomic, strong) UILabel *yTitleLabel;//y标题
+
+@property (nonatomic, strong) RMAreaModel *areaModel;
 
 @end
 
@@ -40,10 +41,8 @@
         self.frame = frame;
         self.backgroundColor = [UIColor colorWithRed:26/255.0 green:27/255.0 blue:29/255.0 alpha:1];
         [self addSubview:self.titleLabel];
-        self.titleLabel.text = @"中国平安";
         [self addSubview:self.yTitleLabel];
-        self.yTitleLabel.text = @"PRICE(￥)";
-        [self processingData];
+//        [self processingData];
     }
     
     return self;
@@ -51,28 +50,25 @@
 
 - (void)rm_drawWithAreaModel:(RMAreaModel *)areaModel
 {
+    self.areaModel = areaModel;
     self.titleLabel.text = areaModel.title;
-    self.xArr = areaModel.xValueArr;
-    self.yValueArr = areaModel.yValueArr;
+    self.titleLabel.text = areaModel.title;
+    self.yTitleLabel.text = areaModel.yTitle;
+    [self processingData];
     [self setNeedsDisplay];
 }
 
 - (void)processingData {
-    self.yValueArr = @[@11.73,@11.55,@11.55,@11.69,@11.78,@11.91,@11.77,@11.5,@11.53,@11.56,@11.71,@11.65,@11.62,@11.57,@11.62,@11.61,@11.71,@12.25,@12.29,@12.32,@12.31,@12.3,@12.39,@12.39,@12.49,@12.5,@12.48,@12.47,@12.49,@12.49,@12.42,@12.41,@12.47,@12.46,@12.69,@12.73,@12.72,@12.63,@12.46,@12.51,@12.49,@12.78,@13.1,@13.45,@13.48,@13.49,@13.14,@13.3];
-    NSString *maxValue = self.yValueArr[0];
-    self.distance = (ChartWidth) / (self.yValueArr.count - 1);
-    for (int i = 0; i < self.yValueArr.count; i++) {
-        if ([self.yValueArr[i] floatValue] > [maxValue floatValue]) {
-            maxValue = self.yValueArr[i];
+    NSString *maxValue = self.areaModel.yValueArr[0];
+    self.distance = (ChartWidth) / (self.areaModel.yValueArr.count - 1);
+    for (int i = 0; i < self.areaModel.yValueArr.count; i++) {
+        if ([self.areaModel.yValueArr[i] floatValue] > [maxValue floatValue]) {
+            maxValue = self.areaModel.yValueArr[i];
         }
     }
-    
-    self.xArr = @[@"2.1",@"2.2",@"2.3",@"2.4", @"2.5",@"2.6",@"2.7",@"2.8",@"2.9", @"2.10", @"2.11", @"2.12", @"2.13", @"2.14", @"2.15", @"2.16", @"2.17", @"2.18", @"2.19", @"2.20", @"2.21", @"2.22", @"2.23", @"2.24", @"2.25", @"2.26", @"2.27", @"2.28", @"3.1", @"3.2", @"3.3", @"3.4", @"3.5", @"3.6", @"3.7", @"3.8", @"3.9", @"3.10", @"3.11", @"3.12", @"3.13", @"3.14", @"3.15", @"3.16", @"3.17", @"3.18", @"3.19", @"3.20"];
     self.yMax = (([maxValue integerValue] / 5) + 1) * 5;
-    
-    for (int i = 0; i < self.yValueArr.count; i++) {
-        [self.pointArray addObject:NSStringFromCGPoint(CGPointMake(IntervalLeft + 5 + self.distance * i,  CGRectGetHeight(self.frame) - IntervalBottom - [self.yValueArr[i] floatValue] / _yMax * ChartHeight))];
-        
+    for (int i = 0; i < self.areaModel.yValueArr.count; i++) {
+        [self.pointArray addObject:NSStringFromCGPoint(CGPointMake(IntervalLeft + 5 + self.distance * i,  CGRectGetHeight(self.frame) - IntervalBottom - [self.areaModel.yValueArr[i] floatValue] / self.yMax * ChartHeight))];
     }
 }
 
@@ -134,6 +130,7 @@
     
     {
         NSInteger pCount = 1;
+        //x刻度最多绘制12个刻度，可根据需要调整刻度数量
         if (self.pointArray.count > 12) {
             pCount = self.pointArray.count / 12;
         }
@@ -156,7 +153,7 @@
             xLabel.transform = CGAffineTransformMakeRotation(-M_PI_4);
             xLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1];
             xLabel.backgroundColor = [UIColor clearColor];
-            xLabel.text = _xArr[i];
+            xLabel.text = self.areaModel.xValueArr[i];
             [self addSubview:xLabel];
 
         }
@@ -178,7 +175,6 @@
         [UIView animateWithDuration:.1 animations:^(){
             [path1 addCurveToPoint:endPoint controlPoint1:CGPointMake((endPoint.x-startPoint.x)/2+startPoint.x, startPoint.y) controlPoint2:CGPointMake((endPoint.x-startPoint.x)/2+startPoint.x, endPoint.y)];
         }];
-        
     }
     
     for(int i=0; i<[points count]; i++){
@@ -188,10 +184,10 @@
         [self addSubview:bgView];
         [self.clickBgViewArr addObject:bgView];
         
-        NSString *value = [NSString stringWithFormat:@"  Date:%@\n  Price:%@", self.xArr[i], [self.yValueArr[i] stringValue]];
+        NSString *value = [NSString stringWithFormat:@"  Date:%@\n  Price:%@", self.areaModel.xValueArr[i], [self.areaModel.yValueArr[i] stringValue]];
         CGSize textSize1 = [value sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, textSize1.width + 5, textSize1.height + 10)];
-        label.center = CGPointMake(CGPointFromString(points[i]).x, CGPointFromString(points[i]).y - 20 - textSize1.height/2);
+        label.center = CGPointMake((CGPointFromString(points[i]).x - (textSize1.width + 5)/2 <= (kScreenWidth - (textSize1.width + 5))) ? CGPointFromString(points[i]).x : (kScreenWidth - (textSize1.width + 5)/2), CGPointFromString(points[i]).y - 20 - textSize1.height/2);
         label.layer.cornerRadius = 4;
         label.clipsToBounds = YES;
         label.numberOfLines = 0;
@@ -205,7 +201,7 @@
         [self.tipsArr addObject:label];
         
         
-        RMArrowView *arrowView = [[RMArrowView alloc] initWithFrame:CGRectMake(label.center.x - 5, CGRectGetMaxY(label.frame)-1, 10, 6)];
+        RMArrowView *arrowView = [[RMArrowView alloc] initWithFrame:CGRectMake(CGPointFromString(points[i]).x - 5, CGRectGetMaxY(label.frame)-1, 10, 6)];
         arrowView.hidden = YES;
         [self addSubview:arrowView];
         [self.arrowArr addObject:arrowView];
@@ -257,7 +253,7 @@
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(shapLayer.frame), CGRectGetHeight(shapLayer.frame));
-    gradientLayer.colors = @[(__bridge id)RGB(89, 142, 163).CGColor, (__bridge id)RGBA(89, 142, 163, 0.1).CGColor];
+    gradientLayer.colors = @[(__bridge id)self.areaModel.startColor.CGColor, (__bridge id)self.areaModel.endColor.CGColor];
     gradientLayer.startPoint = CGPointMake(0, 0);
     gradientLayer.endPoint = CGPointMake(0, 1);
     [gradientLayer setMask:shapLayer];
@@ -442,7 +438,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, kScreenWidth, 50)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame) - IntervalBottom - ChartHeight - 50 - 50, kScreenWidth, 50)];
         _titleLabel.font = [UIFont systemFontOfSize:16];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = [UIColor whiteColor];
@@ -458,6 +454,13 @@
         _yTitleLabel.textColor = [UIColor whiteColor];
     }
     return _yTitleLabel;
+}
+
+- (RMAreaModel *)areaModel {
+    if (!_areaModel) {
+        _areaModel = [RMAreaModel new];
+    }
+    return _areaModel;
 }
 
 @end

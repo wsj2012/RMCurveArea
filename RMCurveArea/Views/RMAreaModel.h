@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface RMAreaModel : NSObject
 
@@ -15,5 +16,7 @@
 @property (nonatomic, strong) NSArray *yValueArr;//y坐标刻度值
 @property (nonatomic, copy) NSString *yTitle;
 @property (nonatomic, copy) NSString *tipValueSuffix;//单位
+@property (nonatomic, strong) UIColor *startColor;//填充区域渐变色值
+@property (nonatomic, strong) UIColor *endColor;//填充区域渐变色值
 
 @end

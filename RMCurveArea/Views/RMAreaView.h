@@ -11,8 +11,6 @@
 
 @interface RMAreaView : UIView
 
-@property (nonatomic, strong) NSArray *yValueArr;
-
 - (void)rm_drawWithAreaModel:(RMAreaModel *)areaModel;
 
 @end
