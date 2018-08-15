@@ -1,0 +1,23 @@
+//
+//  RelationDemo.pch
+//  RelationDemo
+//
+//  Created by 王树军(金融壹账通客户端研发团队) on 2018/8/10.
+//  Copyright © 2018 王树军(金融壹账通客户端研发团队). All rights reserved.
+//
+
+#ifndef RelationDemo_pch
+#define RelationDemo_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* RelationDemo_pch */
+
+#define getRectNavAndStatusHight (CGRectGetHeight(self.navigationController.navigationBar.frame) + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame))
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+
