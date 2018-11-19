@@ -14,9 +14,10 @@
 		A2285D2B2122E5FD009E8BF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2285D292122E5FD009E8BF9 /* LaunchScreen.storyboard */; };
 		A2285D2E2122E5FD009E8BF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A2285D2D2122E5FD009E8BF9 /* main.m */; };
 		A2285D382122E864009E8BF9 /* RMAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2285D372122E864009E8BF9 /* RMAreaViewController.m */; };
-		A2285D3D2122E870009E8BF9 /* RMAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2285D392122E870009E8BF9 /* RMAreaView.m */; };
-		A2285D3E2122E870009E8BF9 /* RMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2285D3C2122E870009E8BF9 /* RMArrowView.m */; };
-		A2302F9C2123BDA100B50607 /* RMAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2302F9B2123BDA100B50607 /* RMAreaModel.m */; };
+		A22D621221A25A940074EA60 /* RMAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A22D620C21A25A940074EA60 /* RMAreaModel.m */; };
+		A22D621321A25A940074EA60 /* RMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A22D620F21A25A940074EA60 /* RMArrowView.m */; };
+		A22D621421A25A940074EA60 /* RMAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = A22D621121A25A940074EA60 /* RMAreaView.m */; };
+		A22D621C21A25FC80074EA60 /* RMCurveArea.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A22D621B21A25FC80074EA60 /* RMCurveArea.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,14 +32,15 @@
 		A2285D2C2122E5FD009E8BF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2285D2D2122E5FD009E8BF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A2285D372122E864009E8BF9 /* RMAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAreaViewController.m; sourceTree = "<group>"; };
-		A2285D392122E870009E8BF9 /* RMAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAreaView.m; sourceTree = "<group>"; };
-		A2285D3A2122E870009E8BF9 /* RMAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAreaView.h; sourceTree = "<group>"; };
-		A2285D3B2122E870009E8BF9 /* RMArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMArrowView.h; sourceTree = "<group>"; };
-		A2285D3C2122E870009E8BF9 /* RMArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMArrowView.m; sourceTree = "<group>"; };
 		A2285D402122E934009E8BF9 /* RMCurveArea.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMCurveArea.pch; sourceTree = "<group>"; };
+		A22D620C21A25A940074EA60 /* RMAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAreaModel.m; sourceTree = "<group>"; };
+		A22D620D21A25A940074EA60 /* RMArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMArrowView.h; sourceTree = "<group>"; };
+		A22D620E21A25A940074EA60 /* RMAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAreaView.h; sourceTree = "<group>"; };
+		A22D620F21A25A940074EA60 /* RMArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMArrowView.m; sourceTree = "<group>"; };
+		A22D621021A25A940074EA60 /* RMAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAreaModel.h; sourceTree = "<group>"; };
+		A22D621121A25A940074EA60 /* RMAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAreaView.m; sourceTree = "<group>"; };
+		A22D621B21A25FC80074EA60 /* RMCurveArea.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = RMCurveArea.podspec; sourceTree = SOURCE_ROOT; };
 		A2302F992123BB4200B50607 /* RMAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAreaViewController.h; sourceTree = "<group>"; };
-		A2302F9A2123BDA100B50607 /* RMAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMAreaModel.h; sourceTree = "<group>"; };
-		A2302F9B2123BDA100B50607 /* RMAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMAreaModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +73,8 @@
 		A2285D1D2122E5F8009E8BF9 /* RMCurveArea */ = {
 			isa = PBXGroup;
 			children = (
+				A22D620B21A25A940074EA60 /* RMViews */,
 				A2285D3F2122E87E009E8BF9 /* Supporting Files */,
-				A2285D352122E83A009E8BF9 /* Views */,
 				A2285D342122E82F009E8BF9 /* ViewControllers */,
 				A2285D1E2122E5F8009E8BF9 /* AppDelegate.h */,
 				A2285D1F2122E5F8009E8BF9 /* AppDelegate.m */,
@@ -95,27 +97,28 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A2285D352122E83A009E8BF9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A2285D3A2122E870009E8BF9 /* RMAreaView.h */,
-				A2285D392122E870009E8BF9 /* RMAreaView.m */,
-				A2285D3B2122E870009E8BF9 /* RMArrowView.h */,
-				A2285D3C2122E870009E8BF9 /* RMArrowView.m */,
-				A2302F9A2123BDA100B50607 /* RMAreaModel.h */,
-				A2302F9B2123BDA100B50607 /* RMAreaModel.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		A2285D3F2122E87E009E8BF9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A22D621B21A25FC80074EA60 /* RMCurveArea.podspec */,
 				A2285D402122E934009E8BF9 /* RMCurveArea.pch */,
 				A2285D2D2122E5FD009E8BF9 /* main.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		A22D620B21A25A940074EA60 /* RMViews */ = {
+			isa = PBXGroup;
+			children = (
+				A22D621021A25A940074EA60 /* RMAreaModel.h */,
+				A22D620C21A25A940074EA60 /* RMAreaModel.m */,
+				A22D620E21A25A940074EA60 /* RMAreaView.h */,
+				A22D621121A25A940074EA60 /* RMAreaView.m */,
+				A22D620D21A25A940074EA60 /* RMArrowView.h */,
+				A22D620F21A25A940074EA60 /* RMArrowView.m */,
+			);
+			path = RMViews;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -174,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A22D621C21A25FC80074EA60 /* RMCurveArea.podspec in Resources */,
 				A2285D2B2122E5FD009E8BF9 /* LaunchScreen.storyboard in Resources */,
 				A2285D282122E5FD009E8BF9 /* Assets.xcassets in Resources */,
 				A2285D262122E5F9009E8BF9 /* Main.storyboard in Resources */,
@@ -189,11 +193,11 @@
 			files = (
 				A2285D382122E864009E8BF9 /* RMAreaViewController.m in Sources */,
 				A2285D232122E5F8009E8BF9 /* ViewController.m in Sources */,
+				A22D621221A25A940074EA60 /* RMAreaModel.m in Sources */,
+				A22D621321A25A940074EA60 /* RMArrowView.m in Sources */,
 				A2285D2E2122E5FD009E8BF9 /* main.m in Sources */,
-				A2285D3E2122E870009E8BF9 /* RMArrowView.m in Sources */,
-				A2285D3D2122E870009E8BF9 /* RMAreaView.m in Sources */,
-				A2302F9C2123BDA100B50607 /* RMAreaModel.m in Sources */,
 				A2285D202122E5F8009E8BF9 /* AppDelegate.m in Sources */,
+				A22D621421A25A940074EA60 /* RMAreaView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "RMAreaView.h"
 #import "RMArrowView.h"
 
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define IntervalBottom 40 //坐标系距离当前view底部距离
 #define IntervalLeft 50 //坐标系距离左边距
 #define IntervalRight 20 //坐标系距离右边距
@@ -211,7 +212,7 @@
         view.frame = CGRectMake(0, 0, 14, 14);
         view.center = CGPointFromString(points[i]);
         view.layer.cornerRadius = 7;
-        view.backgroundColor = RGB(94, 142, 164);
+        view.backgroundColor = [UIColor colorWithRed:94/255.0 green:142/255.0 blue:164/255.0 alpha:1]; 
         view.clipsToBounds = YES;
         view.layer.borderWidth = 1;
         view.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -220,7 +221,8 @@
         [self.circleArr addObject:view];
     }
     
-    [RGB(94, 142, 164) set];       //设置画笔颜色
+    
+    [[UIColor colorWithRed:94/255.0 green:142/255.0 blue:164/255.0 alpha:1] set];       //设置画笔颜色
     [path1 setLineWidth:2];     //设置画笔宽度
     path1.lineCapStyle = kCGLineCapRound;
     [path1 strokeWithBlendMode:kCGBlendModeNormal alpha:1];

@@ -1,14 +1,21 @@
 # RMCurveArea
-RMCurveArea Chart
+
+### 坐标系绘制贝塞尔曲线与x坐标形成封闭区域，区域内部背景实现颜色渐变。图标分析图。
 
 效果图：
 
 ![ScreenShot](https://raw.githubusercontent.com/wsj2012/RMCurveArea/master/Screen%20Shot%20.png)
 
-### How to use ? ----> Here you are!!!
+## Setup Instructions
 
-* 将工程中views文件夹拖入自己的工程，拷贝Supporting Files目录下.pch文件中的宏定义
-* 在要使用的ViewController类添加头部引用#import "RMAreaView.h"，添加使用代码：
+To integrate RMCurveArea into your Xcode project using CocoaPods, specify it in your Podfile:
+pod 'RMCurveArea', and in your code add #import "RMAreaView.h".
+
+## Manually
+
+Just add RMCurveArea folder to your project.
+
+## Basic Examples
 
 ```
 	RMAreaView *areaView = [[RMAreaView alloc] initWithFrame:CGRectMake(0, getRectNavAndStatusHight, kScreenWidth, 360)];
